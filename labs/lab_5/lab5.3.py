@@ -21,6 +21,6 @@ for resource in resource_id:
 # print (r.text)
 # print (r.json)
 
-for header in r.headers:
-    print (header, ':' ,r.headers[header])
+#for header in r.headers:
+#    print (header, ':' ,r.headers[header])
 
