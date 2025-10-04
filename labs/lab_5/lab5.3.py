@@ -10,7 +10,7 @@ parameters = {
 }
 for resource in resource_id:
     r = requests.get(url + resource, parameters)
-    print (r.url)
+    print (r.url, r.status_code)
     # print (r.headers)
 
 # print (r)
