@@ -7,7 +7,9 @@ search_endpoint = '/search/'
 
 query = input("What would you like to search?")
 
-params = {'q' : query}
+params = {'q' : query,
+          'fo': 'json'
+          }
 
 r = requests.get(url + search_endpoint, params=params)
 print (r.url)
