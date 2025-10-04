@@ -11,3 +11,6 @@ params = {'q' : query}
 
 r = requests.get(url + search_endpoint, params=params)
 print (r.url)
+print('Writing your result...\n')
+with open(f'{query}_result.json','w',encoding='utf-8') as f:
+    f.write(json.dumps(r.text, indent=2))
