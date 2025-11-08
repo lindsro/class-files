@@ -1,0 +1,10 @@
+Lab3_Questions:
+1. query umich.edu. what is the response and how would you explain it?
+It responds with the server information and an IP address.
+
+2. Use the command for the above response and pipe the output to a file names umich-dns-record.txt. Provide the text file!
+Included in class files!
+
+3. Querey umich.edu again. What is the command to return only the "answer: section of the response?
+I am using git bash for windows and I could not get dig to work for me. I used the nslookup command and I don't think it gets shorter? I looked it up just in case and I was not seeing much documentation on this. 
+
