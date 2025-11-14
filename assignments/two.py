@@ -18,6 +18,12 @@ if r.status_code == 200:
 else:
     print('Error:', r.status_code)
 
+collection = 'libraries'
+
+collection_list_response = requests.get(base_url + '/' + collection, params=params)
+
+collection_list_response.url
+
 # def create_collection_list(json_path, csv_path):
 #     with open(json_path, 'r', encoding='utf-8') as f:
 #         data = json.load(f)
