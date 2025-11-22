@@ -3,7 +3,7 @@ import requests
 import csv
 from pathlib import Path
 
-base_url = " https://www.loc.gov/free-to-use/libraries/"
+base_url = " https://www.loc.gov/free-to-use"
 params = {
     'fo' : 'json'
 }
@@ -22,32 +22,28 @@ collection = 'libraries'
 
 collection_list_response = requests.get(base_url + '/' + collection, params=params)
 
-collection_list_response.url
+print(collection_list_response.url)
 
-# def create_collection_list(json_path, csv_path):
-#     with open(json_path, 'r', encoding='utf-8') as f:
-#         data = json.load(f)
+collection_json = collection_list_response
 
-#     # Check if 'items' is at the top-level, if not, look for it in related structure
-#     items = data.get('results') or data.get('items') or []  # Fallback for known keys
+collection_json = collection_list_response.json()
 
-#     print(f"Total items found: {len(items)}")
+print(collection_json.keys())
 
-#     with open(csv_path, 'w', newline='', encoding='utf-8') as csvfile:
-#         writer = csv.writer(csvfile)
-#         writer.writerow(['title', 'link', 'image'])  # headers
+for k in collection_json['content']['set']['items']:
+    print(k)
 
-#         for item in items:
-#             title = item.get('title', '')
-#             link = item.get('id', '') # Sometimes URL link is here; adjust as needed
-#             # Sometimes image url is under different keys; find the one that works:
-#             image = ''
-#             if 'image_url' in item:
-#                 image = item['image_url'][0] if item['image_url'] else ''
-#             elif 'image' in item:
-#                 image = item['image'][0] if item['image'] else ''
-#             elif 'resources' in item and item['resources']:
-#                 image = item['resources'][0].get('image', '')
-#             writer.writerow([title, link, image])
+len(collection_json['content']['set']['items'])
 
-#     print(f"Saved CSV to {csv_path}")
+collection_json['content']['set']['items'][0].keys()
+
+collection_set_list = '/collection-project/collection_set_list.csv'
+headers = ['image', 'link', 'title']
+
+with open(collection_set_list, 'w', encoding='utf-8', newline=' ') as f:
+    writer = csv.DictWriter(f, fiednames=headers)
+    writer.writeheader()
+    for item in collection_json['content']['set']['items']:
+        item['title'] = item['title'].rstrip()
+        writer.writerow(item)
+    print('wrote', collection_set_list)
