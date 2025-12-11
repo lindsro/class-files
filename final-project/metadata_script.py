@@ -7,11 +7,11 @@ output_matched_path = 'metadata_with_filenames.csv'
 output_unmatched_path = 'unmatched.csv'
 
 # Read CSV2 and store filenames indexed by their possible identifiers
-filenames = []
-with open(csv2_path, newline='', encoding='utf-8') as f2:
-    reader2 = csv.DictReader(f2)
-    for row in reader2:
-        filenames.append(row['filename'])
+# filenames = []
+# with open(csv2_path, newline='', encoding='utf-8') as f2:
+#     reader2 = csv.DictReader(f2)
+#     for row in reader2:
+#         filenames.append(row['filename'])
 
 # matched_rows = []
 # unmatched_rows = []
