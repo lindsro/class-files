@@ -10,8 +10,12 @@ parameters = {
 }
 for resource in resource_id:
     r = requests.get(url + resource, parameters)
-    print (r.url)
+    print (r.url, r.status_code)
     # print (r.headers)
+    fname = str(resource.split('/')[-2]) + '_item.json'
+    with open(fname, 'w') as f:
+        f.write(r.text)
+        print('Wrote file:',fname)
 
 # print (r)
 # print (r.url)
@@ -21,6 +25,6 @@ for resource in resource_id:
 # print (r.text)
 # print (r.json)
 
-for header in r.headers:
-    print (header, ':' ,r.headers[header])
+#for header in r.headers:
+#    print (header, ':' ,r.headers[header])
 
